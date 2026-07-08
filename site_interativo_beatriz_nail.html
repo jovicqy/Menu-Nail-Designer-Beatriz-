@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatriz Nail Designer - Menu Interativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fontes elegantes e minimalistas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CONFIGURAÇÕES DE RESET E BASE */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fceeed; /* Tom de rosa pastel de fundo extremamente suave */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 10px;
+            font-family: 'Montserrat', sans-serif;
+            color: #333333;
+        }
+
+        /* CARD DO SITE - SIMULA O PANFLETO PREMIUM INTERATIVO */
+        .menu-card {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fffafb; /* Fundo off-white com toque sutil de rosa blush */
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(230, 185, 190, 0.4);
+            border-radius: 12px;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* TEXTURA NATURAL DE FUNDO (MÁRMORE SOFT) */
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/2700506034012462294');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ELEMENTOS BOTÂNICOS VETORIAIS DELICADOS */
+        .botanical-corner {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        .botanical-top-left {
+            top: 5px;
+            left: 5px;
+        }
+
+        .botanical-bottom-right {
+            bottom: 5px;
+            right: 5px;
+            transform: rotate(180deg);
+        }
+
+        /* MOLDURA FINA EM OURO ROSÉ / DOURADO */
+        .gold-border {
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            pointer-events: none;
+            z-index: 0;
+            border-radius: 8px;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+        .inner-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        /* CABEÇALHO */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-placeholder {
+            margin-bottom: 5px;
+        }
+
+        .logo-placeholder svg {
+            width: 35px;
+            height: 35px;
+            fill: #e8a0a7; /* Rosa gold */
+        }
+
+        .brand-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 500;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #242424;
+            line-height: 1.1;
+        }
+
+        .brand-subtitle {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #d4af37;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        /* FORMULÁRIO DE ATENDIMENTO INTERATIVO */
+        .client-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .input-group label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #777;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .input-group input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed rgba(232, 160, 167, 0.6);
+            padding: 6px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13.5px;
+            color: #242424;
+            outline: none;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+
+        .input-group input:focus {
+            border-bottom-color: #d4af37;
+        }
+
+        .section-title-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title-main::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: #e8a0a7;
+            margin: 5px auto 0 auto;
+        }
+
+        /* COLUNAS DE SERVIÇOS */
+        .menu-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .category-group {
+            margin-bottom: 5px;
+        }
+
+        .category-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(232, 160, 167, 0.35);
+            padding-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .category-header i {
+            font-size: 10px;
+            color: #e8a0a7;
+        }
+
+        /* ITENS DE SERVIÇO INTERATIVOS (CHECKBOX ESCONDIDO + LABEL ESTILIZADO) */
+        .service-item-interactive {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .service-item-interactive input {
+            display: none; /* Esconde o checkbox padrão do navegador */
+        }
+
+        /* Checkbox customizado */
+        .custom-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 1px solid rgba(232, 160, 167, 0.8);
+            border-radius: 3px;
+            margin-right: 12px;
+            display: inline-block;
+            flex-shrink: 0;
+            background-color: #fff;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        /* Estado ativo do checkbox */
+        .service-item-interactive input:checked + .custom-checkbox {
+            background-color: #e8a0a7;
+            border-color: #e8a0a7;
+        }
+
+        .service-item-interactive input:checked + .custom-checkbox::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 9px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .service-details {
+            display: flex;
+            align-items: baseline;
+            flex-grow: 1;
+            overflow: hidden;
+            transition: color 0.2s ease;
+        }
+
+        .service-item-interactive input:checked ~ .service-details {
+            color: #e8a0a7;
+            font-weight: 500;
+        }
+
+        .service-name {
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .service-leader {
+            flex-grow: 1;
+            border-bottom: 1px dotted rgba(232, 160, 167, 0.25);
+            margin: 0 6px;
+            position: relative;
+            top: -2px;
+        }
+
+        .service-price {
+            font-weight: 600;
+            color: #2c2c2c;
+            text-align: right;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        /* SEÇÃO DO VALOR TOTAL DINÂMICO */
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px 0 20px 0;
+            padding-top: 15px;
+            border-top: 2px dashed rgba(232, 160, 167, 0.3);
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .total-value-display {
+            font-size: 18px;
+            color: #d4af37; /* Dourado */
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .total-value-display.pop {
+            transform: scale(1.15);
+        }
+
+        /* BOTÃO SOLICITAR EXCLUSIVO */
+        .btn-submit {
+            background-color: #e8a0a7;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(232, 160, 167, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s ease;
+            margin-bottom: 25px;
+        }
+
+        .btn-submit:hover {
+            background-color: #d4af37;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* RODAPÉ E REDES SOCIAIS */
+        .footer-socials {
+            border-top: 1px solid rgba(232, 160, 167, 0.2);
+            padding-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            color: #555555;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: color 0.2s ease;
+        }
+
+        .social-link i {
+            color: #e8a0a7;
+            font-size: 14px;
+        }
+
+        .social-link:hover {
+            color: #d4af37;
+        }
+
+        /* MODAL DE RESUMO DA SOLICITAÇÃO */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background-color: #fffafb;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 100%;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            animation: modalFadeIn 0.3s ease;
+            text-align: center;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .modal-body {
+            font-size: 13px;
+            color: #555555;
+            text-align: left;
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-bottom: 1px solid rgba(232, 160, 167, 0.15);
+            padding-bottom: 15px;
+        }
+
+        .modal-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .btn-whatsapp-confirm {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-whatsapp-confirm:hover {
+            background-color: #1ebe57;
+            transform: translateY(-2px);
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CARD DO MENU INTERATIVO -->
+    <div class="menu-card">
+        
+        <!-- Ilustrações Botânicas Naturais -->
+        <svg class="botanical-corner botanical-top-left" viewBox="0 0 100 100">
+            <path d="M10,40 Q30,35 45,15 Q55,25 40,45 Z" fill="rgba(244, 180, 194, 0.4)"/>
+            <path d="M15,50 C30,48 50,30 55,5" fill="none" stroke="#e8a0a7" stroke-width="0.8"/>
+            <path d="M55,5 Q58,15 50,18 Q45,8 55,5 Z" fill="none" stroke="#e8a0a7" stroke-width="0.6"/>
+            <path d="M30,37 Q35,30 42,32 Q36,41 30,37 Z" fill="rgba(212, 175, 55, 0.2)" stroke="#D4AF37" stroke-width="0.4"/>
+            <path d="M22,44 Q28,40 32,45 Q25,50 22,44 Z" fill="rgba(244, 180, 194, 0.4)" stroke="#e8a0a7" stroke-width="0.4"/>
+        </svg>
+
+        <svg class="botanical-corner botanical-bottom-right" viewBox="0 0 100 100">
+            <path d="M10,40 Q30,35 45,15 Q55,25 40,45 Z" fill="rgba(244, 180, 194, 0.4)"/>
+            <path d="M15,50 C30,48 50,30 55,5" fill="none" stroke="#e8a0a7" stroke-width="0.8"/>
+            <path d="M55,5 Q58,15 50,18 Q45,8 55,5 Z" fill="none" stroke="#e8a0a7" stroke-width="0.6"/>
+            <path d="M30,37 Q35,30 42,32 Q36,41 30,37 Z" fill="rgba(212, 175, 55, 0.2)" stroke="#D4AF37" stroke-width="0.4"/>
+            <path d="M22,44 Q28,40 32,45 Q25,50 22,44 Z" fill="rgba(244, 180, 194, 0.4)" stroke="#e8a0a7" stroke-width="0.4"/>
+        </svg>
+
+        <!-- Moldura Fina -->
+        <div class="gold-border"></div>
+
+        <div class="inner-content">
+            <!-- Cabeçalho -->
+            <header class="header">
+                <div class="logo-placeholder">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12,2 C11.5,4 9,8 6,10 C9,11 11,14 12,22 C13,14 15,11 18,10 C15,8 12.5,4 12,2 Z" />
+                        <circle cx="12" cy="11" r="1.5" fill="#e8a0a7"/>
+                    </svg>
+                </div>
+                <h1 class="brand-title">Beatriz</h1>
+                <p class="brand-subtitle">Nail Designer</p>
+            </header>
+
+            <!-- Identificação (Interativa) -->
+            <div class="client-meta">
+                <div class="input-group">
+                    <label for="client-name">Seu Nome</label>
+                    <input type="text" id="client-name" placeholder="Digite seu nome completo">
+                </div>
+                <div class="input-group" style="max-width: 140px;">
+                    <label for="appointment-date">Data Desejada</label>
+                    <input type="date" id="appointment-date">
+                </div>
+            </div>
+
+            <!-- Título do Menu -->
+            <h2 class="section-title-main">Tabela de Valores</h2>
+
+            <!-- Categorias / Serviços -->
+            <div class="menu-sections">
+                
+                <!-- Decoração -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-wand-magic-sparkles"></i> Decoração</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Decoração" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Encapsulada" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Encapsulada</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Encapsulada madre pérola" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Encapsulada madre pérola</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Encapsulada flores secas" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Encapsulada flores secas</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Desenho a mão" data-price="10">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Desenho a mão</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 10</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Adesivo" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Adesivo</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Pedraria" data-price="5">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Pedraria</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 5</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Alongamentos -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-hands-sparkles"></i> Alongamentos</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Alongamento Molde F1" data-price="140">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Alongamento Molde F1</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 140</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Alongamento Gel na Tips" data-price="160">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Alongamento Gel na Tips</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 160</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Alongamento Molde F1 com Decoração" data-price="150">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Alongamento Molde F1 com Decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 150</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Alongamento Gel na Tips + Decoração" data-price="170">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Alongamento Gel na Tips + Decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 170</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Esmaltação / Gel -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-bottle-droplet"></i> Esmaltação / Gel</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Esmaltação em Gel Simples" data-price="70">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Esmaltação em Gel Simples</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 70</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Blindagem com Decoração" data-price="80">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Blindagem com Decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 80</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Blindagem Natural" data-price="70">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Blindagem Natural</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 70</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Banho de Gel" data-price="90">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Banho de Gel</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 90</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Manicure / Pedicure -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-hand"></i> Manicure / Pedicure</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Manicure e Pedicure" data-price="60">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Manicure e Pedicure</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 60</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Pedicure" data-price="35">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Pedicure</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 35</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Pedicure com decoração" data-price="40">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Pedicure com decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 40</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Manicure" data-price="35">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Manicure</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 35</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Manicure com decoração" data-price="40">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Manicure com decoração</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 40</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Tratamentos -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-spa"></i> Tratamentos</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Spa dos Pés" data-price="100">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Spa dos Pés</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 100</span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- Sobrancelhas -->
+                <div class="category-group">
+                    <h3 class="category-header"><i class="fa-solid fa-eye"></i> Sobrancelhas</h3>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Design com Mapeamento" data-price="40">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Design com Mapeamento</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 40</span>
+                        </div>
+                    </label>
+                    <label class="service-item-interactive">
+                        <input type="checkbox" class="service-check" data-name="Design com Henna" data-price="60">
+                        <span class="custom-checkbox"></span>
+                        <div class="service-details">
+                            <span class="service-name">Design com Henna</span>
+                            <span class="service-leader"></span>
+                            <span class="service-price">R$ 60</span>
+                        </div>
+                    </label>
+                </div>
+
+            </div>
+
+            <!-- VALOR TOTAL DINÂMICO -->
+            <div class="total-section">
+                <span>Valor Total</span>
+                <span class="total-value-display" id="total-price-display">R$ 0</span>
+            </div>
+
+            <!-- BOTÃO SOLICITAR ATENDIMENTO -->
+            <button class="btn-submit" onclick="abrirResumo()">
+                <i class="fa-solid fa-calendar-check"></i> Solicitar Atendimento
+            </button>
+
+            <!-- Rodapé e Redes Sociais -->
+            <footer class="footer-socials">
+                <a href="https://instagram.com/nailsbeatriz28" class="social-link" target="_blank">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>@NAILSBEATRIZ28</span>
+                </a>
+                <a href="https://wa.me/5591982406757" class="social-link" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>(91) 98240-6757</span>
+                </a>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE RESUMO / ENVIAR WHATSAPP -->
+    <div class="modal-overlay" id="modal-resumo">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="fecharResumo()">&times;</button>
+            <h3 class="modal-title">Sua Solicitação</h3>
+            
+            <div style="text-align: left; margin-bottom: 12px; font-size: 13px;">
+                <p><strong>Cliente:</strong> <span id="summary-client-name">-</span></p>
+                <p><strong>Data Desejada:</strong> <span id="summary-client-date">-</span></p>
+            </div>
+            
+            <div class="modal-body" id="modal-services-list">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 15px; margin-bottom: 20px;">
+                <span>Total Estimado:</span>
+                <span id="summary-total-price" style="color: #d4af37;">R$ 0</span>
+            </div>
+            
+            <button class="btn-whatsapp-confirm" onclick="enviarParaWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Enviar pelo WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // CAPTURAR ELEMENTOS
+        const checkboxes = document.querySelectorAll('.service-check');
+        const totalPriceDisplay = document.getElementById('total-price-display');
+        const clientNameInput = document.getElementById('client-name');
+        const appointmentDateInput = document.getElementById('appointment-date');
+
+        // CALCULAR VALOR EM TEMPO REAL
+        function calcularTotal() {
+            let total = 0;
+            checkboxes.forEach(chk => {
+                if (chk.checked) {
+                    total += parseFloat(chk.getAttribute('data-price'));
+                }
+            });
+
+            // Efeito visual sutil ao mudar o preço
+            totalPriceDisplay.classList.add('pop');
+            totalPriceDisplay.innerText = `R$ ${total}`;
+            setTimeout(() => {
+                totalPriceDisplay.classList.remove('pop');
+            }, 200);
+
+            return total;
+        }
+
+        // Adicionar eventos para atualizar ao selecionar/deselecionar
+        checkboxes.forEach(chk => {
+            chk.addEventListener('change', calcularTotal);
+        });
+
+        // DEFINIR DATA MÍNIMA COMO HOJE
+        const hoje = new Date().toISOString().split('T')[0];
+        appointmentDateInput.setAttribute('min', hoje);
+
+        // FUNÇÃO DE EXIBIÇÃO DO MODAL DE CONFIRMAÇÃO
+        function abrirResumo() {
+            const nome = clientNameInput.value.trim();
+            const dataRaw = appointmentDateInput.value;
+            let total = calcularTotal();
+
+            if (!nome) {
+                alert('Por favor, informe seu nome antes de prosseguir.');
+                clientNameInput.focus();
+                return;
+            }
+
+            // Formatar data em padrão brasileiro
+            let dataFormatada = "Não informada";
+            if (dataRaw) {
+                const partes = dataRaw.split('-');
+                dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+            }
+
+            // Obter todos os serviços selecionados
+            const selecionados = [];
+            checkboxes.forEach(chk => {
+                if (chk.checked) {
+                    selecionados.push({
+                        nome: chk.getAttribute('data-name'),
+                        preco: chk.getAttribute('data-price')
+                    });
+                }
+            });
+
+            if (selecionados.length === 0) {
+                alert('Por favor, selecione ao menos um serviço.');
+                return;
+            }
+
+            // Preencher resumo no Modal
+            document.getElementById('summary-client-name').innerText = nome;
+            document.getElementById('summary-client-date').innerText = dataFormatada;
+            document.getElementById('summary-total-price').innerText = `R$ ${total}`;
+
+            const servicesListDiv = document.getElementById('modal-services-list');
+            servicesListDiv.innerHTML = '';
+            
+            selecionados.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'modal-summary-item';
+                div.innerHTML = `<span>${item.nome}</span><span>R$ ${item.preco}</span>`;
+                servicesListDiv.appendChild(div);
+            });
+
+            document.getElementById('modal-resumo').style.display = 'flex';
+        }
+
+        function fecharResumo() {
+            document.getElementById('modal-resumo').style.display = 'none';
+        }
+
+        // INTEGRAR ENVIO COM WHATSAPP
+        function enviarParaWhatsApp() {
+            const nome = clientNameInput.value.trim();
+            const dataRaw = appointmentDateInput.value;
+            let dataFormatada = "Não informada";
+            if (dataRaw) {
+                const partes = dataRaw.split('-');
+                dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+            }
+
+            const selecionados = [];
+            let total = 0;
+            checkboxes.forEach(chk => {
+                if (chk.checked) {
+                    const preco = chk.getAttribute('data-price');
+                    selecionados.push(`• ${chk.getAttribute('data-name')} (R$ ${preco})`);
+                    total += parseFloat(preco);
+                }
+            });
+
+            // Formatando o texto de forma limpa e profissional
+            const mensagem = `Olá, Beatriz! Gostaria de agendar um atendimento.
+            
+*DADOS DA CLIENTE*
+👤 Nome: ${nome}
+📅 Data Desejada: ${dataFormatada}
+
+*SERVIÇOS SELECIONADOS*
+${selecionados.join('\n')}
+
+💰 *Valor Total:* R$ ${total}
+
+Aguardo a confirmação da sua disponibilidade! 😊`;
+
+            const linkWhatsApp = `https://api.whatsapp.com/send?phone=5591982406757&text=${encodeURIComponent(mensagem)}`;
+            window.open(linkWhatsApp, '_blank');
+            fecharResumo();
+        }
+    </script>
+
+</body>
+</html>
